@@ -5,7 +5,6 @@ module.exports = function(app)
     app.delete("/api/test/:id", deleteMessage);
 
     var connectionString = 'mongodb://127.0.0.1:27017/test';
-    //var connectionString = 'mongodb://vinay:cs5610@ds111549.mlab.com:11549/webdevcs5610'
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
