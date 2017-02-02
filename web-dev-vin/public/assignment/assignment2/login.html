@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+</head>
+<body ng-app="LoginApp">
+
+<md-toolbar class="_md _md-toolbar-transitions" style="min-height: auto">
+    <div class="md-toolbar-tools">
+        <h2 > Login </h2>
+    </div>
+</md-toolbar>
+
+<md-content class="md-padding">
+
+    <form layout="column" flex>
+    <md-input-container class="md-block " >
+        <label for="Username">Username</label>
+        <input ng-model="Username"
+               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="Username"
+               aria-invalid="false">
+    </md-input-container>
+
+    <md-input-container class="md-block " >
+        <label for="Password">Password</label>
+        <input ng-model="Password"
+               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="Password"
+               type="password" aria-invalid="false" >
+    </md-input-container>
+
+    <md-button class="md-raised md-primary md-ink-ripple" onclick="location.href='profile.html';"
+               style="min-height: 45px;">
+        <span >Login</span>
+    </md-button>
+
+    <md-button class="md-raised md-warn mc-ripple" onclick="location.href='register.html';"
+               style="background-color: #3b84ff; min-height: 45px;">
+        <span class="ng-scope">Register</span>
+    </md-button>
+    </form>
+
+
+</md-content>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+<script>
+    angular.module('LoginApp',['ngMaterial'])
+</script>
+
+
+
+</body>
+</html>
+

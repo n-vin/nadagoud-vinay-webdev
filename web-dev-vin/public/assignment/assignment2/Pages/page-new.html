@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>page-new</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+</head>
+<body ng-app="NewPageApp" layout="column">
+
+<div class="container" layout="row" flex >
+    <md-sidenav md-is-locked-open=$mdMedia('landscape') style="background: #36eeff" flex="33" >
+
+        <header>
+            <md-toolbar class="md-primary _md _md-toolbar-transitions">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
+                        <img src="../img/back.png">
+                    </md-button>
+                    <h2 >Pages</h2>
+                    <span class="flex"></span>
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='page-new.html';" ng-transclude="" aria-label="Favorite">
+                        <img src="../img/add.png">
+                    </md-button>
+                </div>
+            </md-toolbar>
+        </header>
+
+
+        <md-content flex >
+
+            <md-list class="md-dense flex" >
+
+                <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
+                    <div class="md-list-item-text" >
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Blog Post</b></a>
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
+                        </md-button>
+                    </div>
+                </md-list-item>
+
+                <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
+                    <div class="md-list-item-text" >
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Blogs </b></a>
+
+                        <md-button class="md-secondary md-icon-button md-button  md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
+                        </md-button>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
+                    <div class="md-list-item-text" >
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Home </b></a>
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
+                        </md-button>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
+                    <div class="md-list-item-text" >
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> About</b></a>
+
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
+                        </md-button>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
+                    <div class="md-list-item-text" >
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Contact Us</b></a>
+
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
+                        </md-button>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+
+        </md-content>
+
+
+    </md-sidenav>
+    <div class="container" flex>
+    <header>
+        <md-toolbar class="md-primary _md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <md-button hide="landscape" class="md-icon-button md-button md-ink-ripple"
+                           onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
+                    <img src="../img/back.png">
+                </md-button>
+                <h3 class="ng-binding">New Page</h3>
+                <span class="flex"></span>
+                <md-button class="md-icon-button md-button md-ink-ripple"
+                           onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
+                    <img src="../img/checked.png">
+
+                </md-button>
+
+            </div>
+        </md-toolbar>
+    </header>
+
+
+
+    <md-content class="md-padding" >
+
+
+
+        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+            <label for="name">Name</label>
+            <input ng-model="name"
+                   class="ng-pristine ng-valid md-input ng-empty ng-touched" id="name"
+                   aria-invalid="false" style=" ">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label for="PageTitle">Title</label>
+            <div class="md-resize-wrapper">
+            <textarea ng-model="PageTitle" md-maxlength="" rows="5" md-select-on-focus=""
+                      class="ng-valid md-input ng-dirty ng-valid-parse ng-valid-md-maxlength ng-empty ng-touched"
+                      id="PageTitle" aria-invalid="false" ng-trim="false" style="height: 135px;"></textarea>
+                <div class="md-resize-handle"></div>
+            </div>
+        </md-input-container>
+
+
+
+
+    </md-content>
+    </div>
+</div>
+<footer>
+    <md-toolbar class="md-primary _md _md-toolbar-transitions " >
+        <div class="md-toolbar-tools md-padding">
+            <span class="flex"></span>
+            <md-button class="md-icon-button md-button md-ink-ripple" ng-transclude=""
+                       onclick="location.href='../profile.html';">
+                <img src="../img/male-user.png" class="ng-scope" aria-hidden="true">
+
+            </md-button>
+        </div>
+    </md-toolbar>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+<script>
+    angular.module('NewPageApp',['ngMaterial'])
+</script>
+
+
+
+</body>
+</html>
+
