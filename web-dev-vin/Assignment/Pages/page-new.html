@@ -8,69 +8,80 @@
 </head>
 <body ng-app="NewPageApp" layout="column">
 
-<div class="container" layout="row" flex>
-    <md-sidenav md-is-locked-open=$mdMedia('landscape') style="background: #36eeff" >
+<div class="container" layout="row" flex >
+    <md-sidenav md-is-locked-open=$mdMedia('landscape') style="background: #36eeff" flex="33" >
 
         <header>
             <md-toolbar class="md-primary _md _md-toolbar-transitions">
                 <div class="md-toolbar-tools">
-                    <h2 style="font-size: larger; color: #fafafa"><b>Pages</b></h2>
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
+                        <img src="../img/back.png">
+                    </md-button>
+                    <h2 >Pages</h2>
                     <span class="flex"></span>
-                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
-                        <img src="../img/checked.png">
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='page-new.html';" ng-transclude="" aria-label="Favorite">
+                        <img src="../img/add.png">
                     </md-button>
                 </div>
             </md-toolbar>
         </header>
 
 
-        <md-content flex>
+        <md-content flex >
 
             <md-list class="md-dense flex" >
 
-                </md-list-item>
                 <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
                     <div class="md-list-item-text" >
-                        <h3 class="md-padding" style="font-size: medium" > <b> Blog Post </b></h3>
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Blog Post</b></a>
 
-                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple" type="button" >
-                            <img src="../img/settings.png"></img>
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
+                            <img src="../img/settings.png">
                         </md-button>
                     </div>
                 </md-list-item>
 
                 <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
                     <div class="md-list-item-text" >
-                        <h3 class="md-padding" style="font-size: medium" > <b> Blogs  </b></h3>
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Blogs </b></a>
 
-                        <md-button class="md-secondary md-icon-button md-button  md-ink-ripple" type="button" >
+                        <md-button class="md-secondary md-icon-button md-button  md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
                             <img src="../img/settings.png">
                         </md-button>
                     </div>
                 </md-list-item>
                 <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
                     <div class="md-list-item-text" >
-                        <h3 class="md-padding" style="font-size: medium" > <b> Home </b></h3>
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Home </b></a>
 
-                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"  >
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
                             <img src="../img/settings.png">
                         </md-button>
                     </div>
                 </md-list-item>
                 <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
                     <div class="md-list-item-text" >
-                        <h3 class="md-padding" style="font-size: medium" > <b> About </b></h3>
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> About</b></a>
 
-                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple" type="button" >
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
                             <img src="../img/settings.png">
                         </md-button>
                     </div>
                 </md-list-item>
                 <md-list-item class="md-2-line md-no-proxy md-with-secondary ng-scope _md" >
                     <div class="md-list-item-text" >
-                        <h3 class="md-padding" style="font-size: medium" > <b> Contact Us</b></h3>
+                        <a class="md-padding"  href="../widgets/widget-list.html" style="text-decoration: none; color: #3b84ff"><b> Contact Us</b></a>
 
-                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple" type="button" >
+
+                        <md-button class="md-secondary md-icon-button md-button ng-scope md-ink-ripple"
+                                   onclick="location.href='page-edit.html';">
                             <img src="../img/settings.png">
                         </md-button>
                     </div>
@@ -86,12 +97,14 @@
     <header>
         <md-toolbar class="md-primary _md _md-toolbar-transitions">
             <div class="md-toolbar-tools">
-                <md-button hide="landscape" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
+                <md-button hide="landscape" class="md-icon-button md-button md-ink-ripple"
+                           onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
                     <img src="../img/back.png">
                 </md-button>
                 <h3 class="ng-binding">New Page</h3>
                 <span class="flex"></span>
-                <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
+                <md-button class="md-icon-button md-button md-ink-ripple"
+                           onclick="location.href='page-list.html';" ng-transclude="" aria-label="Favorite">
                     <img src="../img/checked.png">
 
                 </md-button>
@@ -133,7 +146,8 @@
     <md-toolbar class="md-primary _md _md-toolbar-transitions " >
         <div class="md-toolbar-tools md-padding">
             <span class="flex"></span>
-            <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="">
+            <md-button class="md-icon-button md-button md-ink-ripple" ng-transclude=""
+                       onclick="location.href='../profile.html';">
                 <img src="../img/male-user.png" class="ng-scope" aria-hidden="true">
 
             </md-button>

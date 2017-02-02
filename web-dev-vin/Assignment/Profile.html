@@ -6,59 +6,67 @@
     <title>Profile Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
 </head>
-<body ng-app="ProfileApp">
+<body ng-app="ProfileApp" layout="column">
 <header>
 <md-toolbar class="md-primary _md _md-toolbar-transitions">
     <div class="md-toolbar-tools">
         <h3 class="ng-binding">Profile</h3>
         <span class="flex"></span>
-        <img src="./img/ic_done_black_18dp.png">
+        <md-button class="md-icon-button md-button md-ink-ripple"
+                   onclick="location.href='profile.html';" ng-transclude="" aria-label="profile button">
+        <img src="./img/checked.png">
+    </md-button>
     </div>
 </md-toolbar>
 </header>
 
 
 
-<md-content  layout-fill="" class="md-padding" >
+<md-content class="md-padding" flex >
 
-
-
-    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-        <label for="input_25">Username</label>
-        <input ng-model="user.firstName"
-               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="input_25"
-               aria-invalid="false" style=" ">
+    <form  layout="column" flex>
+    <md-input-container class="md-block " >
+        <label for="Username">Username</label>
+        <input ng-model="Username"
+               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="Username"
+               aria-invalid="false" >
     </md-input-container>
 
     <md-input-container class="md-docs-dark-theme md-input-has-value">
-        <label for="input_108">Email</label>
-        <input ng-model="user.email" class="ng-pristine ng-valid md-input ng-not-empty ng-valid-email ng-touched" id="input_108" aria-invalid="false" style="" type="email"><div class="md-errors-spacer"></div>
+        <label for="Email">Email</label>
+        <input ng-model="user.email" class="ng-pristine ng-valid md-input ng-not-empty ng-valid-email ng-touched"
+               id="Email" aria-invalid="false" type="email">
+
     </md-input-container>
 
-    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-        <label for="input_250">First Name</label>
+    <md-input-container class="md-block" >
+        <label for="firstname">First Name</label>
         <input ng-model="user.firstname"
-               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="input_250"
-               aria-invalid="false" style="">
+               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="firstname"
+               aria-invalid="false" >
     </md-input-container>
 
-    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-        <label for="input_255">Last Name</label>
+    <md-input-container class="md-block" >
+        <label for="lastname">Last Name</label>
         <input ng-model="user.lastname"
-               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="input_255"
-               aria-invalid="false" style="">
+               class="ng-pristine ng-valid md-input ng-empty ng-touched" id="lastname"
+               aria-invalid="false" >
     </md-input-container>
 
-    <md-button class="md-raised md-primary md-button md-ink-ripple" type="button" ng-transclude="">
+    <md-button class="md-raised md-primary md-button md-ink-ripple"
+               onclick="location.href='./website/website-list.html';"
+               style="min-height: 48px" ng-transclude="">
         <span class="ng-scope">Websites</span>
         <div class="md-ripple-container" style=""></div>
     </md-button>
 
-    <md-button class="md-raised md-warn md-button mc-ripple" type="button" ng-transclude="">
+    <md-button class="md-raised md-warn md-button mc-ripple"
+               onclick="location.href='login.html';"
+               type="button" ng-transclude="" style="min-height: 48px">
         <span class="ng-scope">Logout</span>
         <div class="md-ripple-container" style=""></div>
     </md-button>
-
+    </form>
 
 
 </md-content>
@@ -68,7 +76,7 @@
         <div class="md-toolbar-tools">
             <span class="flex"></span>
             <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
-                <img src="img/male-user.png" style="color: greenyellow;" class="ng-scope" aria-hidden="true">
+                <img src="img/male-user.png" class="ng-scope" aria-hidden="true">
                     </img>
             </button>
         </div>

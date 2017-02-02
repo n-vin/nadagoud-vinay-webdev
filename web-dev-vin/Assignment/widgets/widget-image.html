@@ -11,12 +11,16 @@
         <header>
             <md-toolbar class="md-primary _md _md-toolbar-transitions">
                 <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='widget-list.html';"
+                               ng-transclude="" aria-label="Favorite">
                         <img src="../img/back.png">
                     </md-button>
-                    <h3 class="ng-binding">Widget Edit</h3>
+                    <h2 style="padding-bottom: 5px">Widget Edit</h2>
                     <span class="flex"></span>
-                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="Favorite">
+                    <md-button class="md-icon-button md-button md-ink-ripple"
+                               onclick="location.href='widget-list.html';"
+                               ng-transclude="" aria-label="Favorite">
                         <img src="../img/checked.png">
 
                     </md-button>
@@ -58,11 +62,7 @@
 
 
             <md-input-container class="md-block" >
-<!--
-                <input class="ng-hide" id="input-file-id" multiple type="file" />
-                <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>
--->
-             <div class="ng-pristine ng-empty ng-touched md_input">
+          <div class="ng-pristine ng-empty ng-touched md_input">
 
                 <input ng-model="upload"
                         id="upload"
@@ -70,7 +70,6 @@
              </div>
             </md-input-container>
 
-            <lf-ng-md-file-input lf-files="files02" lf-api="api02" multiple></lf-ng-md-file-input>
 
 
 
@@ -79,7 +78,8 @@
                 <span >Upload Image</span>
             </md-button>
 
-            <md-button class="md-raised md-warn md-ink-ripple" style="min-width: -moz-available; min-height: 50px;">
+            <md-button class="md-raised md-warn md-ink-ripple" style="min-width: -moz-available; min-height: 50px;"
+                       onclick="location.href='widget-list.html';">
                 <span >Delete</span>
             </md-button>
 
@@ -91,7 +91,8 @@
     <md-toolbar class="md-primary _md _md-toolbar-transitions " >
         <div class="md-toolbar-tools md-padding">
             <span class="flex"></span>
-            <md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="">
+            <md-button class="md-icon-button md-button md-ink-ripple"
+                       onclick="location.href='../profile.html';" ng-transclude="">
                 <img src="../img/male-user.png" class="ng-scope" aria-hidden="true">
 
             </md-button>
