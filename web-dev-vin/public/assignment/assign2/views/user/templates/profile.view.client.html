@@ -1,0 +1,74 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <span ng-click="profileController.updateUser(profileController.user)"
+                class="glyphicon glyphicon-ok">
+            </span>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/profile">
+                Profile
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-show="profileController.message"
+         class="alert alert-success" role="alert">{{profileController.message}}</div>
+    <div ng-show="profileController.error"
+         class="alert alert-danger" role="alert">{{profileController.error}}</div>
+
+    <label>Username</label>
+    <input ng-model="profileController.user.username"
+           class="form-control"
+           type="text"
+           placeholder="Username"/>
+
+    <label for="email">Email</label>
+    <input ng-model="profileController.user.email"
+           id="email"
+           class="form-control"
+           type="email"
+           placeholder="Email"/>
+
+    <label for="first">First Name</label>
+    <input ng-model="profileController.user.firstName"
+           id="first"
+           class="form-control"
+           type="text"
+           placeholder="First Name"/>
+
+    <label for="last">Last Name</label>
+    <input ng-model="profileController.user.lastName"
+           id="last"
+           class="form-control"
+           type="text"
+           placeholder="Last Name"/>
+
+    <a class="btn btn-primary btn-block"
+       href="#/user/{{profileController.user._id}}/website">
+        Websites
+    </a>
+
+    <a ng-click="profileController.deleteUser()" class="btn btn-danger btn-block">
+        Unregister
+    </a>
+
+    <a class="btn btn-danger btn-block" href="#/login">
+        Logout
+    </a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/profile">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

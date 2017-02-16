@@ -1,0 +1,20 @@
+    <div class="container-fluid">
+        <h1>Register</h1>
+            <div ng-show="registerController.error"
+                 class="alert alert-danger" role="alert">{{registerController.error}}</div>
+        <input ng-model="registerController.user.username"
+               type="text"
+               class="form-control"
+               placeholder="username"/>
+        <input ng-model="registerController.user.password"
+               type="password"
+               class="form-control"
+               placeholder="password"/>
+        <input type="password"
+               class="form-control"
+               placeholder="verify password"/>
+        <a class="btn btn-success btn-block"
+           ng-click="registerController.createUser(registerController.user)">Register</a>
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Cancel</a>
+    </div>

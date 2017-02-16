@@ -1,0 +1,46 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="../../website/templates/website-list.view.client.html">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{pageListController.userId}}/website/{{pageListController.websiteId}}/page/new">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Pages
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li ng-repeat="page in pageListController.pages" class="list-group-item">
+            <a href="#/user/{{pageListController.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
+                {{page.name}}</a>
+
+            <a href="#/user/{{pageListController.userId}}/website/{{page.websiteId}}/page/{{page._id}}">
+                <span class="pull-right glyphicon glyphicon-cog"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+
+        <div class="navbar-text pull-right">
+            <a href="../../user/templates/profile.view.client.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
