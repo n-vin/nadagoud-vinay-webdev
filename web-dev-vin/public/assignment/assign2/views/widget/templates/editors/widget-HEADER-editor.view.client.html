@@ -1,17 +1,21 @@
-<h1>HEADER Editor</h1>
 
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
-
-<label>Text</label>
-<input ng-model="model.widget.text" class="form-control"/>
-
-<label>Size</label>
-<select class="form-control">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-</select>
+<div class="container-fluid">
+    <label for="widget-name">Name</label>
+    <input ng-model="model.widget.name"
+           id="widget-name"
+           class="form-control"
+           value="Rio Olympics 2016"
+           type="text"
+           placeholder="Widget Name">
+    <label for="widget-text">Text</label>
+    <input ng-model="model.widget.text"
+           id="widget-text"
+           class="form-control"
+           value="India at Rio 2016"
+           type="text"
+           placeholder="Widget Text"/>
+    <label for="widget-size">Size</label>
+    <input id="widget-size" class="form-control" type="text" value="3" placeholder="Widget Size"/>
+    <a class="btn btn-danger btn-block" href="#">Delete</a>
+    <!--widget-list.view.client.html-->
+</div>

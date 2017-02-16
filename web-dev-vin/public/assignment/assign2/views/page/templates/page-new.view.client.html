@@ -3,24 +3,24 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="page-list.view.client.html">
+                <a href="#/user/{{pageNewController.userId}}/website/{{pageNewController.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a href="page-list.view.client.html" class="navbar-brand">
+                <a href="#/user/{{pageNewController.userId}}/website/{{pageNewController.websiteId}}/page" class="navbar-brand">
                     Pages
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="#">
+                <a href="">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="visible-xs navbar-text pull-left">
-                <a href="page-list.view.client.html">
+                <a href="#/user/{{pageNewController.userId}}/website/{{pageNewController.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="">
                     New Page
                 </a>
             </div>
@@ -43,33 +43,11 @@
     <div class="row">
         <div class="col-sm-4 hidden-xs">
             <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="../../widget/templates/widget-list.view.client.html">Blog Post</a>
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-cog"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../widget/templates/widget-list.view.client.html">Home</a>
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-cog"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../widget/templates/widget-list.view.client.html">About</a>
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-cog"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../widget/templates/widget-list.view.client.html">Contact Us</a>
-                    <a href="page-edit.view.client.html">
-                        <span class="pull-right glyphicon glyphicon-cog"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../widget/templates/widget-list.view.client.html">Blogs</a>
-                    <a href="page-edit.view.client.html">
+                <li ng-repeat="page in pageNewController.pages" class="list-group-item">
+                    <a href="#/user/{{pageNewController.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}</a>
+
+                    <a href="#/user/{{pageNewController.userId}}/website/{{page.websiteId}}/page/{{page._id}}">
                         <span class="pull-right glyphicon glyphicon-cog"></span>
                     </a>
                 </li>
@@ -89,7 +67,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../../user/templates/profile.view.client.html">
+            <a href="#/user/{{pageNewController.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

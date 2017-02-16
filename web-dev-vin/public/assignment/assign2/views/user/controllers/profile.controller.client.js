@@ -11,6 +11,7 @@
         vm.deleteUser = deleteUser;
 
         var userId = $routeParams['uid'];
+        vm.userId = userId;
 
         function init() {
             var user = userService.findUserById(userId);

@@ -1,4 +1,34 @@
 <h1>YOUTUBE Editor</h1>
 
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="widget-list.view.client.html">
+                <span class="glyphicon glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="widget-list.view.client.html">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
 
-{{model.widget}}
+
+<div class="container-fluid">
+    <label for="widget-name">Name</label>
+    <input id="widget-name" class="form-control" type="text" value="Rio 2016" placeholder="Video Name">
+    <label for="widget-text">Text</label>
+    <input id="widget-text" class="form-control" type="text" value="Best of Rio 2016" placeholder="Video Text"/>
+    <label for="widget-url">URL</label>
+    <input id="widget-url" class="form-control" value="https://www.youtube.com/embed/El1_ENLEmKA" type="text" placeholder="Video URL"/>
+    <label for="widget-width">Width</label>
+    <input id="widget-width" class="form-control" type="text" placeholder="Video Width"/>
+    <a class="btn btn-danger btn-block" href="widget-list.view.client.html">Delete</a>
+</div>
