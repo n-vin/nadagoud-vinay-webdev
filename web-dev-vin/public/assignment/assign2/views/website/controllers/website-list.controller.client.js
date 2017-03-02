@@ -11,12 +11,23 @@
 
 
         function init() {
-            var websites = websiteService.findWebsitesByUser(userId);
-            vm.websites = websites;
+            websiteService
+                .findWebsitesByUser(userId)
+                .success(function (websites) {
+                    console.log("Websites list-controller" + websites);
+                    vm.websites = websites;
+                    //renderWebsites(websites);
+                });
             vm.userId = userId;
         }
         init();
+/*
+        function renderWebsites(websites) {
+            console.log(websites);
 
+            console.log(websites);
+        }
+*/
 
     }
 })();

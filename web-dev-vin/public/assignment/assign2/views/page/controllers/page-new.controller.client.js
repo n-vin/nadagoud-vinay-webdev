@@ -12,14 +12,23 @@
         vm.createPage = createPage;
 
         function init() {
-            var pages = pageService.findPageByWebsiteId(vm.websiteId);
-            vm.pages = pages;
+            pageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
+            //var pages = pageService.findPageByWebsiteId(vm.websiteId);
+
         }
         init();
 
         function createPage(newPage) {
-            pageService.createPage(vm.websiteId,newPage);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            pageService
+                .createPage(vm.websiteId,newPage)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                });
+
         }
 
     }

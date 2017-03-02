@@ -3,16 +3,7 @@
         .module("WebAppMaker")
         .service("websiteService",websiteService);
     
-    function websiteService() {
-        var websites = [
-
-            { "_id": "123", "name": "Facebook",    "developerId": "456", updated: new Date(), "description": "Lorem" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456", updated: new Date(), "description": "Lorem" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456", updated: new Date(), "description": "Lorem" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", updated: new Date(), "description": "Lorem" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123", updated: new Date(), "description": "Lorem" },
-            { "_id": "789", "name": "Chess",       "developerId": "234", updated: new Date(), "description": "Lorem" }
-        ];
+    function websiteService($http) {
         this.findWebsitesByUser = findWebsitesByUser;
         this.findWebsiteById = findWebsiteById;
         this.updateWebsite = updateWebsite;
@@ -20,16 +11,28 @@
         this.createWebsite = createWebsite;
 
         function findWebsitesByUser(userId) {
-            var sites= [];
-            for(var w in websites){
-                if(websites[w].developerId == userId){
-                    sites.push(websites[w]);
-                }
-            }
-            return sites;
-
+            console.log("website service client called");
+            return $http.get("/api/user/"+userId+"/website");
         }
+
         function findWebsiteById(websiteId) {
+            return $http.get("/api/website/"+websiteId);
+        }
+
+        function deleteWebsite(websiteId) {
+            return $http.delete("/api/website/"+websiteId);
+        }
+
+        function updateWebsite(websiteId, website) {
+            return $http.put("/api/website/"+websiteId, website);
+        }
+
+        function createWebsite(userId, website) {
+
+            return $http.post("/api/user/"+userId+"/website", website);
+        }
+
+        /*function findWebsiteById(websiteId) {
             for(var w in websites){
                 if(websites[w]._id == websiteId){
                     return angular.copy(websites[w]);
@@ -73,7 +76,7 @@
             };
             websites.push(newWebsite);
             return newWebsite;
-        }
+        }*/
 
     }
 })();

@@ -3,8 +3,8 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
 
-    function WidgetService() {
-        var widgets = [
+    function WidgetService($http) {
+        /*var widgets = [
             { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "Rio Olympics 2016"},
             { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 3, "text": "India's achievement in Rio 2016"},
             { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
@@ -14,7 +14,7 @@
             { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Best of Rio Olympic 2016 !!!"},
             { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
                 "url": "https://www.youtube.com/embed/El1_ENLEmKA" }
-        ];
+        ];*/
 
         var api = {
             "findAllWidgets" : findAllWidgets,
@@ -27,18 +27,26 @@
         return api;
 
         function findAllWidgets(pageId) {
-            return widgets;
+            console.log("findAllWidgets client called");
+            return $http.get("/api/page/"+pageId+"/widget");
+            //return widgets;
         }
 
         function deleteWidget(widgetId) {
+            console.log("deleteWidget client called");
+            return $http.delete("/api/widget/"+widgetId);
+            /*
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
                     widgets.splice(w, 1);
                 }
-            }
+            }*/
         }
 
         function updateWidget(widgetId, newWidget){
+            console.log("updateWidget client called");
+            return $http.put("/api/widget/"+widgetId,newWidget);
+            /*
             for(w in widgets){
                 widget = widgets[w];
                 if(widget._id === widgetId){
@@ -60,29 +68,38 @@
                             break;
                     }
                 }
-            }
+            }*/
         }
 
         function findWidgetById(widgetId) {
+            console.log("findWidgetById client called" + widgetId);
+            return $http.get("/api/widget/"+widgetId);
+            /*
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
                     return angular.copy(widgets[w]);
                 }
             }
-            return null;
+            return null;*/
         }
 
         function findWidgetsByPageId(pageId) {
+            console.log("findWidgetsByPageId client called");
+            return $http.get("/api/page/"+pageId+"/widget");
+            /*
             var widgetsforPage = [];
             for(var w in widgets) {
                 if(widgets[w].pageId === pageId) {
                     widgetsforPage.push(widgets[w]);
                 }
             }
-            return widgetsforPage;
+            return widgetsforPage;*/
         }
 
-        function createWidget(pageId, widget) {
+        function createWidget(pageId,newWidget) {
+            console.log("createWidget client called" + newWidget);
+            return $http.post("/api/page/"+pageId+"/widget",newWidget);
+            /*
             widget.pageId = pageId;
             switch(widget.widgetType){
                 case "HEADER":
@@ -101,7 +118,7 @@
                     widget.text = "Default Text";
                     break;
             }
-            widgets.push(widget);
+            widgets.push(widget);*/
         }
     }
 })();

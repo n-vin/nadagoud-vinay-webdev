@@ -12,8 +12,15 @@
 
 
         function init() {
-            var pages = pageService.findPageByWebsiteId(websiteId);
-            vm.pages = pages;
+            pageService
+                .findAllPagesForWebsite(websiteId)
+                .success(function(pages){
+                    console.log("Pages received list controller");
+                    vm.pages=pages;
+                });
+            /*
+            var pages = pageService.findAllPagesForWebsite(websiteId);
+            vm.pages = pages; */
             vm.userId = userId;
             vm.websiteId = websiteId;
         }

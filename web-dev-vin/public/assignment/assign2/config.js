@@ -2,7 +2,10 @@
     angular
         .module("WebAppMaker")
         .config(configuration);
-    function configuration($routeProvider){
+    function configuration($routeProvider,$httpProvider){
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+
         $routeProvider
             .when("/login",{
                 templateUrl:"views/user/templates/login.view.client.html",
@@ -59,7 +62,7 @@
                 controller: "WidgetChooserController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid/page/:pid/widget/:wid",{
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
                 templateUrl: "views/widget/templates/widget-edit.view.client.html",
                 controller: "WidgetEditController",
                 controllerAs: "model"

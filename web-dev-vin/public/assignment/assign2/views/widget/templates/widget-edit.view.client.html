@@ -1,5 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row container-fluid">
+    <div class="container-fluid">
+        <!--
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
@@ -18,8 +19,14 @@
             </div>
         </div>
 
-        <div class="col-sm-8">
-            <div class="visible-xs navbar-text pull-left">
+-->
+        <!--<div >-->
+            <!--<div class="navbar-text pull-left">-->
+                <!--<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <div class=" navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
@@ -34,12 +41,13 @@
                     Edit Widget
                 </a>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 </nav>
 
 
-<div class="row container-fluid">
+<div class="container-fluid">
+    <!--
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
         <ul class="list-group">
             <li class="list-group-item wbdv-no-border">
@@ -83,11 +91,12 @@
             </li>
 
         </ul>
-    </div>
+    </div>-->
 
-    <div class="col-sm-8 col-xs-12 wbdv-right-pane">
-        <form>
-    
+    <!-- <div class="col-sm-8 col-xs-12 wbdv-right-pane"> -->
+
+        <!--<form>-->
+
             <div ng-switch="model.widget.widgetType">
                 <div ng-switch-when = "HEADER">
                     <ng-include src="'views/widget/templates/editors/widget-HEADER-editor.view.client.html'"></ng-include>
@@ -106,39 +115,25 @@
                 </div>
             </div>
 
+
             <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">
                 Done
             </a>
             <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
                 Delete
             </a>
-        </form>
+
+        <!--</form>-->
     </div>
-</div>
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="row navbar-text text-center btn-block">
-            <div class="col-xs-3">
-                <a href="#/login" class="navbar-link">
-                    <span class="glyphicon glyphicon-home"></span>
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a href="#/user/{{model.userId}}" class="navbar-link">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a class="navbar-link">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3">
-                <a class="navbar-link">
-                    <span class="glyphicon glyphicon-cloud"></span>
-                </a>
-            </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
         </div>
     </div>
 </nav>
+

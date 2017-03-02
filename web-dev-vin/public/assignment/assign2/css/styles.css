@@ -3,7 +3,10 @@
     border-color: black;
 
 }
-
+#p2
+{
+    margin-bottom: 5px;
+}
 .no-left-margin {
     margin-left: 0px;
 }

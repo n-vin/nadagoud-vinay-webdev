@@ -3,40 +3,50 @@
         .module("WebAppMaker")
         .service("pageService",pageService);
     
-    function pageService() {
-        var pages=[
+    function pageService($http) {
+        /*var pages=[
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
             { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
             { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
         ];
-
+        */
         this.createPage = createPage;
-        this.findPageByWebsiteId = findPageByWebsiteId;
+        this.findAllPagesForWebsite = findAllPagesForWebsite;
         this.findPageById = findPageById;
         this.updatePage = updatePage;
         this.deletePage = deletePage;
 
-        function findPageByWebsiteId(websiteId) {
+        function findAllPagesForWebsite(websiteId) {
+            console.log("find all pages called in client");
+            return $http.get("/api/website/"+websiteId+"/page");
+            /*
             var pageslist = [];
             for(var p in pages){
                 if(pages[p].websiteId == websiteId){
                     pageslist.push(pages[p]);
                 }
             }
-            return pageslist;
+            return pageslist; */
         }
 
+
         function findPageById(pageId) {
+            return $http.get("/api/page/"+pageId);
+            /*
             for(var p in pages){
                 if(pages[p]._id == pageId){
                     return angular.copy(pages[p]);
                 }
             }
-            return null;
+            return null; */
         }
 
 
+
         function createPage(websiteId,page){
+            page.websiteId = websiteId;
+            return $http.post("/api/website/"+websiteId+"/page",page);
+            /*
             var id = parseInt(pages[pages.length -1]._id);
             id += 1;
             var newPage = {
@@ -46,10 +56,13 @@
                 description: page.description
             };
             pages.push(newPage);
-            return newPage;
+            return newPage; */
         }
 
-        function updatePage(pageId,up_page) {
+        function updatePage(pageId,modPage) {
+            return $http.put("/api/page/"+pageId,modPage);
+
+            /*
             for(var p in pages){
                 if(pages[p]._id == pageId){
                     pages[p].description = up_page.description;
@@ -58,17 +71,19 @@
                     return pages[p];
                 }
             }
-            return null;
+            return null; */
         }
 
         function deletePage(pageId) {
+            return $http.delete("/api/page/"+pageId);
+            /*
             for(var p in pages) {
                 if (pages[p]._id == pageId) {
                     pages.splice(p, 1);
                     return true;
                 }
             }
-            return false;
+            return false;*/
         }
 
     }
