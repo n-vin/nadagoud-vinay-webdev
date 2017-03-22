@@ -1,38 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!--
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
-                    Choose Widget
-                </a>
-            </div>
-            <div class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-        </div>
-
--->
-        <!--<div >-->
-            <!--<div class="navbar-text pull-left">-->
-                <!--<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">-->
-                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-            <div class=" navbar-text pull-left">
+                   <div class=" navbar-text pull-left">
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -41,61 +15,12 @@
                     Edit Widget
                 </a>
             </div>
-        <!--</div>-->
+
     </div>
 </nav>
 
 
 <div class="container-fluid">
-    <!--
-    <div class="col-sm-4 hidden-xs wbdv-left-pane">
-        <ul class="list-group">
-            <li class="list-group-item wbdv-no-border">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a ng-click="model.createWidget('HEADER')">
-                            Header
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="list-group-item wbdv-no-border">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a ng-click="model.createWidget('IMAGE')">
-                            Image
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="list-group-item wbdv-no-border">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a ng-click="model.createWidget('YOUTUBE')">
-                            YouTube
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="list-group-item wbdv-no-border">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a ng-click="model.createWidget('HTML')">
-                            HTML
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-        </ul>
-    </div>-->
-
-    <!-- <div class="col-sm-8 col-xs-12 wbdv-right-pane"> -->
-
-        <!--<form>-->
 
             <div ng-switch="model.widget.widgetType">
                 <div ng-switch-when = "HEADER">
@@ -123,7 +48,6 @@
                 Delete
             </a>
 
-        <!--</form>-->
     </div>
 
 

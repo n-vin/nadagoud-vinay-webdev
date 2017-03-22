@@ -1,3 +1,4 @@
+<script src="../../../../config.js"></script>
 <div class="form-group">
     <label for="image-name">Name</label>
     <input ng-model="model.widget.name"
@@ -39,7 +40,7 @@
 
    <label >Upload</label>
     <form action="/api/upload" method="post" enctype="multipart/form-data">
-        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="myFile"   type="file" class="form-control" id="browse"/>
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
         <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
         <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
@@ -49,3 +50,15 @@
         <div id="p2"></div>
     </form>
 
+<!--ng-click="model.updateWidget()" /-->
+<div>
+    <!--
+    <a  class="btn btn-primary btn-block">
+
+    </a> -->
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr"
+   class="btn btn-success btn-block">
+        Search
+</a>
+    <div id="a1"></div>
+</div>

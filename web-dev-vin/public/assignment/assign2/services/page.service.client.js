@@ -2,14 +2,8 @@
     angular
         .module("WebAppMaker")
         .service("pageService",pageService);
-    
+
     function pageService($http) {
-        /*var pages=[
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-        ];
-        */
         this.createPage = createPage;
         this.findAllPagesForWebsite = findAllPagesForWebsite;
         this.findPageById = findPageById;
@@ -44,7 +38,7 @@
 
 
         function createPage(websiteId,page){
-            page.websiteId = websiteId;
+            page._website = websiteId;
             return $http.post("/api/website/"+websiteId+"/page",page);
             /*
             var id = parseInt(pages[pages.length -1]._id);

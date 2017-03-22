@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app,UserModel) {
     app.get("/api/user", findUser);
     app.get("/api/user/:userId", findUserByUserId);
     app.put("/api/user/:userId", updateUser);
@@ -27,16 +27,35 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var newUser = req.body;
+
+        /*
         var id = parseInt(users[users.length -1]._id);
         id += 1;
         newUser._id = id.toString();//(new Date()).getTime() + "";
         users.push(newUser);
         console.log(users);
         res.json(newUser);
+        */
+        UserModel
+            .createUser(newUser)
+            .then(function (user) {
+                res.json(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function updateUser(req, res) {
         var userId = req.params['userId'];
+        var newUser = req.body;
+        UserModel
+            .updateUser(userId,newUser)
+            .then(function (user) {
+                res.json(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+        /*
         console.log(userId);
         for(var u in users) {
             var user = users[u];
@@ -53,10 +72,22 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
+        */
     }
 
     function findUserByUserId(req, res) {
         var userId = req.params['userId'];
+
+
+        UserModel
+            .findUserById(userId)
+            .then(function (user) {
+                res.json(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+        /*
         for(var u in users) {
             var user = users[u];
             if( user._id === userId ) {
@@ -65,6 +96,8 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);//.send({});
+        */
+
     }
 
     function findUser(req, res) {
@@ -80,6 +113,23 @@ module.exports = function (app) {
 
     function findUserByUsername(req, res) {
         var username = req.query['username'];
+
+
+        UserModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                if(user){
+                    res.json(user);
+                }
+                else{
+                    res.sendStatus(400).send("User not found for username: " + username);
+                }
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+
+        /*
         var user = users.find(function(u){
             return u.username == username;
         });
@@ -89,13 +139,25 @@ module.exports = function (app) {
         } else {
             console.log("user not found");
             res.sendStatus(404);//.send('User not found for username: ' + username);
-        }
+        }*/
     }
 
     function findUserByCredentials(req, res){
         console.log("user service called");
         var username = req.query['username'];
         var password = req.query['password'];
+
+
+        UserModel
+            .findUserByCredentials(username,password)
+            .then(function (user) {
+                res.json(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+
+        /*
         var user = users.find(function(u){
             return u.username == username && u.password == password;
         });
@@ -104,5 +166,6 @@ module.exports = function (app) {
         } else {
             res.send('');
         }
+        */
     }
 };

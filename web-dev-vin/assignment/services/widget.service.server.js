@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app,WidgetModel,PageModel) {
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
@@ -25,6 +25,14 @@ module.exports = function (app) {
 
     function findAllWidgetsForPage(req,res) {
         var pageId = req.params.pageId;
+        WidgetModel.findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                res.json(widgets);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+        /*
         var widgs = [];
         for (w in widgets){
             if(widgets[w].pageId == pageId){
@@ -32,37 +40,58 @@ module.exports = function (app) {
             }
         }
         console.log(widgs);
-        res.json(widgs);
+        res.json(widgs); */
     }
 
     function findWidgetById(req,res) {
         var widgetId = req.params.widgetId;
-        console.log("find widget by Id: widget id "+ widgetId);
+
+        WidgetModel.findWidgetById(widgetId)
+            .then(function (widget) {
+                res.json(widget);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+        /*console.log("find widget by Id: widget id "+ widgetId);
         for (w in widgets){
             if(widgets[w]._id == widgetId){
                 res.json(widgets[w]);
                 return;
             }
         }
-        console.log("No Widgets found");
+        console.log("No Widgets found");*/
     }
 
     function deleteWidget(req,res) {
         var widgetId = req.params.widgetId;
-        for(w in widgets){
-            console.log("List item" + widgets[w]._id );
-            if(widgets[w]._id === widgetId){
-                widgets.splice(w,1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
+        //var pageId = req.params.pageId;
+
+        WidgetModel.findWidgetById(widgetId)
+            .then(function (widget){
+                PageModel.deleteWidgetFromPage(widget._page,widgetId)
+                    .then(function (result) {
+                        // handle image delete
+                        WidgetModel.deleteWidget(widgetId)
+                            .then(function (result) {
+                                res.json(result);
+                            }, function (err) {
+                                res.sendStatus(500).send(err);
+                            });
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
+
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function updateWidget(req, res){
         var widgetId = req.params.widgetId;
         var newWidget = req.body;
+
+
+        /*
         for(w in widgets){
             var widget = widgets[w];
             if(widget._id === widgetId){
@@ -82,21 +111,31 @@ module.exports = function (app) {
                     case "HTML":
                         widget.text = newWidget.text;
                         break;
-                }
+                }*/
+
+        WidgetModel.updateWidget(widgetId,newWidget)
+            .then(function (widget) {
+                res.json(widget);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+                /*
                 res.sendStatus(200);
                 return;
             }
         }
-        res.sendStatus(404);
+        res.sendStatus(404);*/
     }
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        var id = parseInt(widgets[widgets.length -1]._id);
+        /*var id = parseInt(widgets[widgets.length -1]._id);
         id += 1;
         widget._id = id.toString();
 
         widget.pageId = pageId;
+         */
         switch(widget.widgetType){
             case "HEADER":
                 widget.text = "My Header ";
@@ -114,9 +153,23 @@ module.exports = function (app) {
                 widget.text = "The text comes here ...";
                 break;
         }
-        widgets.push(widget);
+
+        WidgetModel.createWidget(pageId,widget)
+            .then(function (widget) {
+                PageModel.addWidgetToPage(widget._page,widget)
+                    .then(function (result) {
+                        res.json(widget);
+                    },function (err) {
+                        //delete widget;
+                        res.sendStatus(500).send(err);
+                    });
+                //res.json(widget);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+        /*widgets.push(widget);
         console.log(widgets);
-        res.json(widget);
+        res.json(widget);*/
     }
 
     function uploadImage(req, res) {
@@ -136,6 +189,7 @@ if(myFile==undefined){
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
+        /*
         for (var w in widgets){
             console.log("uploadImage" + widgetId +" : " +  widgets[w]._id );
             if (widgets[w]._id === widgetId){
@@ -146,6 +200,24 @@ if(myFile==undefined){
             }
 
         }
+        */
+        WidgetModel.findWidgetById(widgetId)
+            .then(function (widget) {
+                widget.url = req.protocol + '://' + req.get('host') + '/uploads/' + myFile.filename;
+                widget.width = width;
+                WidgetModel.updateWidget(widgetId,widget)
+                    .then(function (widget) {
+                        //res.json(widget);
+                    }, function (err) {
+                        //res.sendStatus(500).send(err);
+                    });
+                //res.json(widget);
+            }, function (err) {
+                //res.sendStatus(500).send(err);
+            });
+
+
+
         res.redirect("/assignment/assign2/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/");
 
 

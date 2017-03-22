@@ -25,7 +25,7 @@
 
         function createWebsite(newWebsite){
             console.log("createWebsite called in client");
-            newWebsite.developerId = userId;
+            newWebsite._user = userId;
             //newWebsite.updated= new Date();
             websiteService
                 .createWebsite(userId,newWebsite)

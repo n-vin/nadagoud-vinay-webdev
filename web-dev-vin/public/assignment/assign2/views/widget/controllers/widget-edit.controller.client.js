@@ -14,6 +14,7 @@
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
         vm.createWidget = createWidget;
+        vm.flickrSearch = flickrSearch;
 
         function init() {
             WidgetService
@@ -47,6 +48,10 @@
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget" );
                 })
 
+        }
+
+        function flickrSearch() {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+ widgetId+"/flickr" );
         }
 
         function createWidget(widgetType) {

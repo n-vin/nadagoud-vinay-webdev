@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
+//require ("./assignment/model/models.server")(app);
 
 var assignment = require("./assignment/app.js");
 assignment(app);
