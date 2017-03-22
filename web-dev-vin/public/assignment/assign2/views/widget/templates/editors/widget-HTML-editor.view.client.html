@@ -1,8 +1,18 @@
-<div class="form-group">
-    <label for="html-text">Text</label>
+
+
+    <!-- <label for="html-text">Text</label> -->
+    <div  ng-model="model.widget.text"
+            text-angular
+            ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+                        ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                        ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                        ['indent','outdent'],['html']]"
+            value="Save Tigers !!!!"
+
+            placeholder="HTML Text"> </div>
+    <!--
     <input ng-model="model.widget.text"
            type="text"
            placeholder="HTML Text"
            class="form-control"
-           id="html-text"/>
-</div>
+           id="html-text"/> -->
