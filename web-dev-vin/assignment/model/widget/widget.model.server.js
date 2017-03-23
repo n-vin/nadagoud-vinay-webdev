@@ -19,6 +19,7 @@ module.exports = function () {
         deleteWidget: deleteWidget,
         reorderWidget: reorderWidget,
         deleteAllWidgetsForPage: deleteAllWidgetsForPage,
+        deleteWidgetOfPage: deleteWidgetOfPage,
         setModel:setModel
     };
 
@@ -39,6 +40,37 @@ module.exports = function () {
 
 
 
+
+    function getAllWidgets(count, widgetsOfPage, widgetCollectionForPage) {
+        if(count == 0){
+            return widgetCollectionForPage;
+        }
+
+        return WidgetModel.findById(widgetsOfPage.shift()).select('-__v')
+            .then(function (widget) {
+                widgetCollectionForPage.push(widget);
+                return getAllWidgets(--count, widgetsOfPage, widgetCollectionForPage);
+            }, function (err) {
+                return err;
+            });
+    }
+    function findAllWidgetsForPage(pageId){
+
+        return _model.PageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                var widgetsOfPage = page.widgets;
+                var numberOfWidgets = widgetsOfPage.length;
+                var widgetCollectionForPage = [];
+
+                return getAllWidgets(numberOfWidgets, widgetsOfPage, widgetCollectionForPage);
+
+            }, function (err) {
+                return err;
+            });
+    }
+
+    /*
     function findAllWidgetsForPage(pageId) {
         var deferred = q.defer();
 
@@ -51,7 +83,7 @@ module.exports = function () {
         });
         return deferred.promise;
 
-    }
+    }*/
 
     function findWidgetById(widgetId) {
         var deferred = q.defer();
@@ -83,6 +115,7 @@ module.exports = function () {
 
     }
 
+    /*
     function deleteWidget(widgetId) {
 
         var deferred = q.defer();
@@ -97,12 +130,12 @@ module.exports = function () {
         return deferred.promise;
 
     }
+    */
 
     function deleteAllWidgetsForPage(pageId) {
-
         var deferred = q.defer();
 
-        WidgetModel.remove({_id: pageId}, function (err, result) {
+        WidgetModel.remove({_page: pageId}, function (err, result) {
             if(err) {
                 deferred.reject(err);
             } else {
@@ -113,8 +146,60 @@ module.exports = function () {
 
     }
 
-    function reorderWidget(pageId,start,end) {
+    function reorderWidget(pageId, start, end) {
+        return _model.PageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                console.log("model reorder" + page);
+                page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
+                page.save();
+                console.log("model reorder 1" + page);
 
+                return 200;
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function deleteWidget(widgetId){
+        return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
+            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId),1);
+            widget._page.save();
+            if(widget.widgetType == "IMAGE"){
+                deleteUploadedImage(widget.url);
+            }
+            return WidgetModel.remove({_id:widgetId});
+        }, function (err) {
+            return err;
+        });
+    }
+
+    function deleteWidgetOfPage(widgetId) {
+        return WidgetModel.findById(widgetId)
+            .then(function (widget) {
+                if(widget.widgetType == "IMAGE"){
+                    deleteUploadedImage(widget.url);
+                }
+                return WidgetModel.remove({_id: widgetId});
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function deleteUploadedImage(imageUrl) {
+        // Local helper function
+        // if(imageUrl && imageUrl.search('http') == -1){
+        //     // Locally uploaded image
+        //     // Delete it
+        //     fs.unlink(publicDirectory+imageUrl, function (err) {
+        //         if(err){
+        //             console.log(err);
+        //             return;
+        //         }
+        //         console.log('successfully deleted '+publicDirectory+imageUrl);
+        //     });
+        // }
+return;
     }
 
     return api;

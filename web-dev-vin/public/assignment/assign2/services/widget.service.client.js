@@ -22,7 +22,8 @@
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
+            "deleteWidget": deleteWidget,
+            "updateWidgetOrder": updateWidgetOrder
         };
         return api;
 
@@ -119,6 +120,10 @@
                     break;
             }
             widgets.push(widget);*/
+        }
+
+        function updateWidgetOrder(pageId, startIndex, endIndex) {
+            return $http.put("/page/"+pageId+"/widget?initial="+startIndex+"&final="+endIndex);
         }
     }
 })();

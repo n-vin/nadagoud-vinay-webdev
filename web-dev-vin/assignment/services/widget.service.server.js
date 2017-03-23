@@ -8,6 +8,8 @@ module.exports = function (app,WidgetModel,PageModel) {
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post("/api/page/:pageId/widget", createWidget);
     app.post("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/page/:pid/widget", updateWidgetOrder);
+
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "NORTHEASTERN UNIVERSITY !!!"},
@@ -62,6 +64,7 @@ module.exports = function (app,WidgetModel,PageModel) {
         console.log("No Widgets found");*/
     }
 
+    /*
     function deleteWidget(req,res) {
         var widgetId = req.params.widgetId;
         //var pageId = req.params.pageId;
@@ -83,6 +86,21 @@ module.exports = function (app,WidgetModel,PageModel) {
 
             }, function (err) {
                 res.sendStatus(500).send(err);
+            });
+    }
+    */
+
+    function deleteWidget(req, res){
+        var widgetId = req.params.widgetId;
+        WidgetModel
+            .deleteWidget(widgetId)
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    res.sendStatus(200);
+                }
+            }, function (err) {
+                console.log(err);
+                res.sendStatus(404);
             });
     }
 
@@ -222,6 +240,21 @@ if(myFile==undefined){
 
 
 
+    }
+
+    function updateWidgetOrder(req, res) {
+        var pageId = req.params.pid;
+        var startIndex = parseInt(req.query.initial);
+        var endIndex = parseInt(req.query.final);
+
+        WidgetModel
+            .reorderWidget(pageId, startIndex, endIndex)
+            .then(function (response) {
+
+                res.sendStatus(response);
+            }, function (err) {
+                res.sendStatus(404);
+            });
     }
 
 };

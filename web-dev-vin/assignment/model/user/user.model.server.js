@@ -20,6 +20,7 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         deleteUser: deleteUser,
         addWebsiteToUser: addWebsiteToUser,
+        deleteWebsiteFromUser: deleteWebsiteFromUser,
         setModel:setModel
     };
 
@@ -105,9 +106,64 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    /*
     function deleteUser(userId) {
+    }*/
+
+
+    function recursiveDelete(websitesOfUser, userId) {
+        if(websitesOfUser.length == 0){
+            console.log("delete uesr ,,");
+            return UserModel.remove({_id: userId})
+                .then(function (response) {
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
+                }, function (err) {
+                    return err;
+                });
+        }
+
+        return _model.WebsiteModel.deleteWebsiteAndChildren(websitesOfUser.shift())
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return recursiveDelete(websitesOfUser, userId);
+                }
+            }, function (err) {
+                return err;
+            });
     }
 
+    function deleteUser(userId) {
+        console.log("delete user 1" + userId);
+        return UserModel.findById({_id: userId})
+            .then(function (user) {
+                console.log("delete user 2" + userId);
+
+                var websitesOfUser = user.websites;
+                return recursiveDelete(websitesOfUser, userId);
+            }, function (err) {
+                console.log(err);
+                return err;
+            });
+    }
+
+
+    function deleteWebsiteFromUser(userId,websiteId) {
+        var deferred = q.defer();
+
+        console.log("user  model" +userId);
+        UserModel.findById(userId, function (err, user) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                console.log("user" + user);
+                user.websites.splice(user.websites.indexOf(websiteId),1);
+                deferred.resolve(user.save());
+            }
+        });
+        return deferred.promise;
+    }
 
 
 };

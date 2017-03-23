@@ -19,6 +19,8 @@ module.exports = function () {
         updateWebsite: updateWebsite,
         deleteWebsite: deleteWebsite,
         addPageToWebsite: addPageToWebsite,
+        deletePageFromWebsite: deletePageFromWebsite,
+        deleteWebsiteAndChildren: deleteWebsiteAndChildren,
         setModel:setModel
     };
 
@@ -88,8 +90,82 @@ module.exports = function () {
         });
         return deferred.promise;
     }
-    function deleteWebsite(websiteId) {
 
+    /*
+    function deleteWebsite(websiteId) {
+        var deffered = q.defer();
+
+        //var deferred = q.defer();
+
+        WebsiteModel.remove({_id: websiteId}, function (err, result) {
+            if(err) {
+                deffered.reject(err);
+            } else {
+                deffered.resolve(result);
+            }
+        });
+        return deffered.promise;
+    }*/
+
+    function deletePageFromWebsite(websiteId,pageId) {
+        var deferred = q.defer();
+
+        console.log("website model" +websiteId);
+        WebsiteModel.findById(websiteId, function (err, website) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+
+                console.log("website" + website);
+                website.pages.splice(website.pages.indexOf(pageId),1);
+                deferred.resolve(website.save());
+            }
+        });
+        return deferred.promise;
+    }
+
+    function deleteWebsite(websiteId){
+        return WebsiteModel.findOne({_id:websiteId}).populate('_user').then(function (website) {
+            website._user.websites.splice(website._user.websites.indexOf(websiteId),1);
+            website._user.save();
+            return deleteWebsiteAndChildren(websiteId);
+        }, function (err) {
+            console.log(err);
+            return err;
+        });
+    }
+
+    function recursiveDelete(pagesOfWebsite, websiteId) {
+        if(pagesOfWebsite.length == 0){
+            return WebsiteModel.remove({_id: websiteId})
+                .then(function (response) {
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
+                }, function (err) {
+                    console.log(err);
+                    return err;
+                });
+        }
+
+        return _model.PageModel.deletePageAndChildren(pagesOfWebsite.shift())
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return recursiveDelete(pagesOfWebsite, websiteId);
+                }
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function deleteWebsiteAndChildren(websiteId){
+        return WebsiteModel.findById({_id: websiteId}).select({'pages':1})
+            .then(function (website) {
+                var pagesOfWebsite = website.pages;
+                return recursiveDelete(pagesOfWebsite, websiteId);
+            }, function (err) {
+                return err;
+            });
     }
 
     return api;

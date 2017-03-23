@@ -65,6 +65,7 @@
             var answer = confirm("Are you sure?");
             console.log(answer);
             if(answer) {
+                console.log("delete ok pressed");
                 userService
                     .deleteUser(userId)
                     .success(function () {

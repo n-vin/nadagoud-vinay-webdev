@@ -10,6 +10,8 @@ module.exports = function () {
         dateCreated: {type: Date, default: Date.now}
     }, {collection: 'assignment.page'});
 
+
+
     return PageSchema;
 };
 

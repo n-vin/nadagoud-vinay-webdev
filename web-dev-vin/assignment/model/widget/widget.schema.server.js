@@ -20,5 +20,8 @@ module.exports = function () {
         dateCreated: {type: Date, default: Date.now}
     }, {collection: 'assignment.widget'});
 
+
+
+
     return WidgetSchema;
 };

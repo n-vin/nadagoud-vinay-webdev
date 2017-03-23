@@ -59,8 +59,33 @@ module.exports = function (app,WebsiteModel,UserModel) {
         console.log("No website found");*/
     }
 
+    /*
     function deleteWebsite(req,res){
         var websiteId = req.params.websiteId;
+        WebsiteModel
+            .findWebsiteById(websiteId)
+            .then(function (website) {
+                UserModel.deleteWebsiteFromUser(website._user,websiteId)
+                    .then(function (result) {
+                        WidgetModel.deleteAllWidgetsForPage(pageId)
+                            .then(function (result) {
+                                PageModel.deletePage(pageId)
+                                    .then(function (result) {
+                                        res.json(result);
+                                    },function (err) {
+                                        res.sendStatus(500).send(err);
+                                    });
+                                //res.json(result);
+                            }, function (err) {
+                                res.sendStatus(500).send(err);
+                            });
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+        /*
         for(var w in websites){
             if(websites[w]._id === websiteId){
                 websites.splice(w, 1);
@@ -70,6 +95,17 @@ module.exports = function (app,WebsiteModel,UserModel) {
         }
         res.sendStatus(404);
         console.log("No website found");
+    }*/
+
+    function deleteWebsite(req, res) {
+        var websiteId = req.params.websiteId;
+        WebsiteModel.
+        deleteWebsite(websiteId)
+            .then(function (status) {
+                res.send(status);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function updateWebsite(req, res) {

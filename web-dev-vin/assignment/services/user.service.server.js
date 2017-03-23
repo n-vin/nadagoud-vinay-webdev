@@ -12,6 +12,7 @@ module.exports = function (app,UserModel) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "jannunzi@vmail.com"  }
     ];
 
+    /*
     function deleteUser(req, res) {
         console.log("user service delete called");
         var userId = req.params.userId;
@@ -23,6 +24,17 @@ module.exports = function (app,UserModel) {
             }
         }
         res.sendStatus(404);
+    }*/
+
+    function deleteUser(req, res) {
+        var userId = req.params.userId;
+        UserModel.
+        deleteUser(userId)
+            .then(function (status) {
+                res.send(status);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function createUser(req, res) {

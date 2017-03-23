@@ -55,9 +55,42 @@ module.exports = function (app,PageModel,WebsiteModel,WidgetModel) {
         */
     }
 
+    /*
     function deletePage(req,res){
         var pageId = req.params.pageId;
 
+        PageModel.findPageById(pageId)
+            .then(function (page){
+                WebsiteModel.deletePageFromWebsite(page._website,pageId)
+                    .then(function (result) {
+                        WidgetModel.deleteAllWidgetsForPage(pageId)
+                            .then(function (result) {
+                                PageModel.deletePage(pageId)
+                                    .then(function (result) {
+                                        res.json(result);
+                                    },function (err) {
+                                        res.sendStatus(500).send(err);
+                                    });
+                                //res.json(result);
+                            }, function (err) {
+                                res.sendStatus(500).send(err);
+                            });
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
+
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+
+        /*PageModel
+            .deletePage(pageId)
+            .then(function (result) {
+                res.json(result);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+/*
         var pageId = req.params.pageId;
 
         WidgetModel.deleteAllWidgetsForPage(pageId)
@@ -85,8 +118,20 @@ module.exports = function (app,PageModel,WebsiteModel,WidgetModel) {
             }
         }
         res.sendStatus(404);
-        console.log("No page found");*/
+        console.log("No page found");
+    }*/
+
+    function deletePage(req, res) {
+        var pageId = req.params.pageId;
+        PageModel.
+        deletePage(pageId)
+            .then(function (status) {
+                res.send(status);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
+
 
     function updatePage(req, res) {
         var pageId = req.params['pageId'];
