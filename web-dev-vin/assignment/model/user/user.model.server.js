@@ -122,7 +122,7 @@ module.exports = function () {
                 }, function (err) {
                     return err;
                 });
-        }
+        } 
 
         return _model.WebsiteModel.deleteWebsiteAndChildren(websitesOfUser.shift())
             .then(function (response) {
