@@ -453,7 +453,7 @@ img#site-title {
 	-webkit-transition:opacity 0.2s;
 	transition:opacity 0.2s;
 }
-.grid li:hover figure {
+.grid li:hover figImage {
 	opacity:0.7;
 }
 
@@ -913,3 +913,4 @@ blockquote cite {
 blockquote cite:before {
 	content: "\2014 \2009";
 }
+
